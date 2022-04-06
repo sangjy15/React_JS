@@ -16,12 +16,13 @@
       >
         {" "}
         Click me{" "}
-      </button> ); const Container = (
+      </button> ); const Container = () => (
     <div>
         <Title />
         <Button />
     </div>
-    ); ReactDOM.render(Container, root);
+    ); ReactDOM.render(
+    <Container />, root);
 </script>
 
 </html>
