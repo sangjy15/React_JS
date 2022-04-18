@@ -22,9 +22,20 @@
         <button onClick={reset}>Reset</button>
         <button onClick={onFlip}>{flipped ? "turn back" : "flip"}</button>
     </div>
-    ); } function KmToMiles() { return (
+    ); } function KmToMilesTransmiter() { const [amount, setAmount] = React.useState(0); const [reverted, setRevert] = React.useState(false); const onChange = (event) => { setAmount(event.target.value); }; const reset = () => { setAmount(0); }; const onRevert
+    = () => { reset(); setRevert((current) => !current); }; return (
     <div>
         <h3> KM 2 M</h3>
+        <div>
+            <label>Kilomiter</label>
+            <input value={reverted ? amount * 1.609 : amount} placeholder="Kilomiter" type="number" onChange={onChange} disabled={reverted} />
+        </div>
+        <div>
+            <label>Miles</label>
+            <input value={reverted ? amount : amount / 1.609} placeholder="Miles" type="number" onChange={onChange} disabled={!reverted} />
+        </div>
+        <button onClick={reset}>Reset</button>
+        <button onClick={onRevert}>{reverted ? "turn back" : "revert"}</button>
     </div>
     ); } function App() { const [index, setIndex] = React.useState("0"); const onSelect = (event) => { setIndex(event.target.value); }; return (
     <div>
@@ -35,7 +46,7 @@
           </select>
         <hr /> {index === "0" ?
         <MinutesToHours /> :
-        <KmToMiles />}
+        <KmToMilesTransmiter />}
     </div>
     ); } ReactDOM.render(
     <App />, root);
